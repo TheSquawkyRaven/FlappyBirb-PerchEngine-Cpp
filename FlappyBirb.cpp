@@ -3,8 +3,8 @@
 #include "Engine.h"
 #include "Log.h"
 #include "Branch/Branch2D/Sprite2D.h"
+#include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Text2D.h"
-#include "Branch/Branch2D/CutSprite2D.h"
 #include "Branch/Branch2D/Rectangle2D.h"
 #include "Branch/Branch2D/BorderedRectangle2D.h"
 #include "Branch/Branch2D/Line2D.h"
@@ -13,6 +13,7 @@
 #include "Structs/Texture.h"
 #include "Structs/Font.h"
 
+#include "Player.h"
 
 using namespace std;
 using namespace Perch;
@@ -33,6 +34,7 @@ int main(int argc, char* args[])
 	engineConfig->ClearColor = Color::White();
 
 	Engine* engine = new Engine(engineConfig);
+
 	engine->SetOnRootCreate(&OnRootCreate);
 	engine->Start();
 
@@ -44,13 +46,11 @@ int main(int argc, char* args[])
 void OnRootCreate(Engine* Engine, Branch* Root)
 {
 
-	shared_ptr<Texture> birbTexture = Texture::Create(Engine, "./images/birb-Sheet.png");
-	shared_ptr<Sprite2D> birbSprite = Engine->CreateBranch<Sprite2D>();
+	Player* player = new Player();
+	player->Player::Create(Engine);
 
-	birbSprite->SetTexture(birbTexture);
-	birbSprite->Scale = Vector2(8, 8);
+	Root->AttachChild(player->GetRoot());
 
-	Root->AttachChild(birbSprite);
 
 	/*shared_ptr<Sprite2D> sprite = Engine->CreateBranch<Sprite2D>();
 	shared_ptr<Sprite2D> sprite2 = Engine->CreateBranch<Sprite2D>();
