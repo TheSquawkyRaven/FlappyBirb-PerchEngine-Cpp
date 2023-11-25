@@ -13,11 +13,11 @@ class Player : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Rigidbody2D> Root = NULL;
+	std::shared_ptr<Perch::Rigidbody2D> Rigidbody = NULL;
 
 public:
 
-	inline std::shared_ptr<Perch::Rigidbody2D> GetRoot() { return Root; }
+	inline std::shared_ptr<Perch::Rigidbody2D> GetRoot() { return Rigidbody; }
 
 	void Create(Perch::Engine* engine);
 
