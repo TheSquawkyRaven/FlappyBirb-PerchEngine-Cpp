@@ -19,11 +19,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="FlappyBirb.cpp" />
-    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="src\Background.cpp" />
+    <ClCompile Include="src\Cat.cpp" />
+    <ClCompile Include="src\CatCouple.cpp" />
+    <ClCompile Include="src\CatGod.cpp" />
+    <ClCompile Include="src\FlappyBirb.cpp" />
+    <ClCompile Include="src\Player.cpp" />
+    <ClCompile Include="src\PlayerCollider.cpp" />
+    <ClCompile Include="src\PlayerScore.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Player.h" />
+    <ClInclude Include="src\Background.h" />
+    <ClInclude Include="src\Cat.h" />
+    <ClInclude Include="src\CatCouple.h" />
+    <ClInclude Include="src\CatGod.h" />
+    <ClInclude Include="src\Player.h" />
+    <ClInclude Include="src\PlayerCollider.h" />
+    <ClInclude Include="src\PlayerScore.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
