@@ -14,7 +14,7 @@ void Player::Create()
 	rigidbody->gravity = 15.0f;
 	rigidbody->AttachScript(unique_ptr<Player>(this));
 
-	static shared_ptr<Texture> birbTexture = Texture::Create(engine, "./images/birb-Sheet.png");
+	shared_ptr<Texture> birbTexture = Texture::Create(engine, "./images/birb-Sheet.png");
 	sprite = new Sprite2D(engine);
 	sprite->SetTexture(birbTexture);
 	sprite->scale = Vector2(6, 6);
@@ -58,7 +58,7 @@ void Player::Update()
 
 	if (rigidbody->position.y < 0.0f || rigidbody->position.y > 720.0f)
 	{
-		delete engine;
+		engine->Quit();
 	}
 
 }

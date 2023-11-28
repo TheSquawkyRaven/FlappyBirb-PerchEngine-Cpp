@@ -10,12 +10,13 @@ using namespace Squawk;
 
 void PlayerScore::Create()
 {
-	static shared_ptr<Font> lameFont = Font::Create(engine, "./fonts/LameFont.ttf", 64);
+	shared_ptr<Font> lameFont = Font::Create(engine, "./fonts/LameFont.ttf");
 	if (lameFont == nullptr)
 	{
 		return;
 	}
 	text = new Text2D(engine);
+	text->fontSize = 64;
 	text->position = Vector2(20, 20);
 	text->SetFont(lameFont);
 	text->SetText(to_string(score));

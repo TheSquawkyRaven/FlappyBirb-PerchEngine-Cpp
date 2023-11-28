@@ -12,5 +12,5 @@ void PlayerCollider::OnCollision2D(Collider2D* collider)
 {
 	Log::Printf("Collided");
 	Log::Printf("playerScore: %d", playerScore->GetScore());
-	delete engine;
+	engine->Quit();
 }

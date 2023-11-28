@@ -6,10 +6,6 @@
 #include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Text2D.h"
 #include "Branch/Branch2D/Rectangle2D.h"
-#include "Branch/Branch2D/BorderedRectangle2D.h"
-#include "Branch/Branch2D/Line2D.h"
-#include "Branch/Branch2D/Point2D.h"
-#include "Branch/Branch2D/Viewport2D.h"
 #include "Structs/Texture.h"
 #include "Structs/Font.h"
 
