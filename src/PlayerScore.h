@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch2D/Text2D.h"
 
@@ -12,17 +12,23 @@ class PlayerScore : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Text2D> Text = NULL;
+	Perch::Text2D* text = nullptr;
+
+private:
+
+	int score = 0;
 
 public:
 
-	int Score = 0;
+	inline int GetScore() const { return score; }
 
-	inline std::shared_ptr<Perch::Text2D> GetRoot() { return Text; }
+public:
+
+	PlayerScore(Perch::Engine* engine) : Script(engine) {}
+	inline Perch::Text2D* GetRoot() { return text; }
+	void Create();
 
 	void AddScore();
-	
-	void Create(Perch::Engine* engine);
 
 };
 

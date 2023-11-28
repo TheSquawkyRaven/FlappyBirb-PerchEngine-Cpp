@@ -3,7 +3,7 @@
 #include "SDL.h"
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Sprite2D.h"
@@ -16,20 +16,17 @@ class Cat : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Sprite2D> Sprite = NULL;
-	std::shared_ptr<Perch::Collider2D> Collider = NULL;
+	Perch::Sprite2D* sprite = nullptr;
+	Perch::Collider2D* collider = nullptr;
 
 public:
 
-	inline std::shared_ptr<Perch::Sprite2D> GetRoot() { return Sprite; }
+	Cat(Perch::Engine* engine) : Script(engine) {}
+	inline Perch::Sprite2D* GetRoot() { return sprite; }
+	void Create();
 
-	void Create(Perch::Engine* engine);
+	void SetIsTop(bool isTop);
 
-	void SetIsTop(Perch::Engine* engine, bool isTop);
-
-
-	virtual void Update(Perch::Engine* engine) override;
-	virtual void Draw(Perch::Engine* engine, SDL_Renderer* renderer);
 
 };
 

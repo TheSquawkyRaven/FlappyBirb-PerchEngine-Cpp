@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Sprite2D.h"
@@ -17,22 +17,27 @@ class Player : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Rigidbody2D> Rigidbody = NULL;
-	std::shared_ptr<Perch::Sprite2D> Sprite = NULL;
-	std::shared_ptr<Perch::Collider2D> Collider = NULL;
-	PlayerCollider* PCollider = NULL;
-	PlayerScore* Score = NULL;
+	Perch::Rigidbody2D* rigidbody = nullptr;
+	Perch::Sprite2D* sprite = nullptr;
+	Perch::Collider2D* collider = nullptr;
+
+	PlayerCollider* playerCollider = nullptr;
+	PlayerScore* playerScore = nullptr;
+
+private:
+
+	float time = 0;
 
 public:
 
-	float t = 0;
+	Player(Perch::Engine* engine) : Script(engine) {}
+	inline Perch::Rigidbody2D* GetRoot() { return rigidbody; }
+	void Create();
 
-	inline std::shared_ptr<Perch::Rigidbody2D> GetRoot() { return Rigidbody; }
+	virtual void Update() override;
 
-	void Create(Perch::Engine* engine);
 	void SetPlayerScore(PlayerScore* playerScore);
 
-	virtual void Update(Perch::Engine* engine) override;
 
 };
 

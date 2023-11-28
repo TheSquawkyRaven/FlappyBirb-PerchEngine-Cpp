@@ -1,73 +1,70 @@
 #include "Player.h"
 
-#include "Log.h"
+#include "Squawk/Log.h"
 
 
 using namespace Perch;
 using namespace std;
 using namespace Squawk;
 
-void Player::Create(Engine* engine)
-{
-	shared_ptr<Rigidbody2D> rigidbody(new Rigidbody2D(engine));
-	rigidbody->Gravity = 15.0f;
-	rigidbody->AttachScript(GetScript());
-	Rigidbody = rigidbody;
 
-	shared_ptr<Texture> birbTexture = Texture::Create(engine, "./images/birb-Sheet.png");
-	shared_ptr<Sprite2D> sprite(new Sprite2D(engine));
+void Player::Create()
+{
+	rigidbody = new Rigidbody2D(engine);
+	rigidbody->gravity = 15.0f;
+	rigidbody->AttachScript(unique_ptr<Player>(this));
+
+	static shared_ptr<Texture> birbTexture = Texture::Create(engine, "./images/birb-Sheet.png");
+	sprite = new Sprite2D(engine);
 	sprite->SetTexture(birbTexture);
-	sprite->Scale = Vector2(6, 6);
+	sprite->scale = Vector2(6, 6);
 	sprite->SetSpriteColumns(2);
-	sprite->PositionPivot = Vector2(0.5f, 0.5f);
-	Sprite = sprite;
+	sprite->positionPivot = Vector2(0.5f, 0.5f);
 
 	Vector2 playerStartPosition = engine->GetMainWindowSize();
-	playerStartPosition.X /= 3;
-	playerStartPosition.Y /= 2;
-	Rigidbody->Position = playerStartPosition;
+	playerStartPosition.x /= 3;
+	playerStartPosition.y /= 2;
+	rigidbody->position = playerStartPosition;
 
-	shared_ptr<Collider2D> collider(new Collider2D(engine));
-	collider->Rect = Rect2(-28, -28, 10, 10);
-	Collider = collider;
+	collider = new Collider2D(engine);
+	collider->rect = Rect2(-28, -28, 10, 10);
 
-	PlayerCollider* playerCollider = new PlayerCollider();
-	Collider->AttachScript(playerCollider->GetScript());
-	PCollider = playerCollider;
+	playerCollider = new PlayerCollider(engine);
+	collider->AttachScript(unique_ptr<PlayerCollider>(playerCollider));
 
-	sprite->AttachChild(collider);
-	Rigidbody->AttachChild(sprite);
+	sprite->AttachChild(unique_ptr<Branch>(collider));
+	rigidbody->AttachChild(unique_ptr<Branch>(sprite));
 }
 
-void Player::SetPlayerScore(PlayerScore* playerScore)
+void Player::Update()
 {
-	Score = playerScore;
-	PCollider->SetPlayerScore(playerScore);
-}
-
-void Player::Update(Engine* engine)
-{
-	if (Rigidbody->Velocity.Y > 0.0f)
+	if (rigidbody->velocity.y > 0.0f)
 	{
-		Sprite->SetSpriteIndex(0);
+		sprite->SetSpriteIndex(0);
 	}
 	if (engine->GetInput()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
-		Sprite->SetSpriteIndex(1);
-		Rigidbody->Velocity = Vector2(0, -5.0f);
+		sprite->SetSpriteIndex(1);
+		rigidbody->velocity = Vector2(0, -5.0f);
 	}
 
-	t += engine->DeltaTime;
-	if (t > 1.0f)
+	time += engine->deltaTime;
+	if (time > 1.0f)
 	{
-		Score->AddScore();
-		t = 0.0f;
+		playerScore->AddScore();
+		time = 0.0f;
 	}
 
 
-	if (Rigidbody->Position.Y < 0.0f || Rigidbody->Position.Y > 720.0f)
+	if (rigidbody->position.y < 0.0f || rigidbody->position.y > 720.0f)
 	{
 		delete engine;
 	}
 
+}
+
+void Player::SetPlayerScore(PlayerScore* playerScore)
+{
+	this->playerScore = playerScore;
+	playerCollider->SetPlayerScore(playerScore);
 }

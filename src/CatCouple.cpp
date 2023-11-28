@@ -1,45 +1,32 @@
 #include "CatCouple.h"
 
-#include "Log.h"
+#include "Squawk/Log.h"
 
 
 using namespace Perch;
 using namespace std;
 using namespace Squawk;
 
-void CatCouple::Create(Engine* engine)
+
+void CatCouple::Create()
 {
-	shared_ptr<Branch2D> root(new Branch2D(engine));
-	Root = root;
+	root = new Branch2D(engine);
+	root->position.y = engine->GetMainWindowSize().y / 2;
+	root->AttachScript(unique_ptr<CatCouple>(this));
 
-	root->Position.Y = engine->GetMainWindowSize().Y / 2;
+	float offset = engine->GetRandom()->RandomFloat(minOffset, maxOffset);
+	float gap = engine->GetRandom()->RandomFloat(minGap, maxGap);
 
-	Root->AttachScript(GetScript());
-	Spawn(engine);
-}
+	topCat = new Cat(engine);
+	topCat->Create();
+	topCat->SetIsTop(true);
+	topCat->GetRoot()->position.y -= -offset / 2 + gap / 2;
 
-void CatCouple::Spawn(Engine* engine)
-{
-	float offset = engine->GetRandom()->RandomFloat(MinOffset, MaxOffset);
-	float gap = engine->GetRandom()->RandomFloat(MinGap, MaxGap);
+	bottomCat = new Cat(engine);
+	bottomCat->Create();
+	bottomCat->SetIsTop(false);
+	bottomCat->GetRoot()->position.y += offset / 2 + gap / 2;
 
-	Cat* topCat = new Cat();
-	topCat->Create(engine);
-	topCat->SetIsTop(engine, true);
-	topCat->GetRoot()->Position.Y -= -offset / 2 + gap / 2;
-
-	Cat* bottomCat = new Cat();
-	bottomCat->Create(engine);
-	bottomCat->SetIsTop(engine, false);
-	bottomCat->GetRoot()->Position.Y += offset / 2 + gap / 2;
-
-	TopCat = topCat;
-	BottomCat = bottomCat;
-
-	Root->AttachChild(topCat->GetRoot());
-	Root->AttachChild(bottomCat->GetRoot());
-}
-
-void CatCouple::Update(Engine* engine)
-{
+	root->AttachChild(unique_ptr<Branch>(topCat->GetRoot()));
+	root->AttachChild(unique_ptr<Branch>(bottomCat->GetRoot()));
 }

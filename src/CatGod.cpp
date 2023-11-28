@@ -1,57 +1,54 @@
 #include "CatGod.h"
 
-#include "Log.h"
+#include "Squawk/Log.h"
 
 
 using namespace Perch;
 using namespace std;
 using namespace Squawk;
 
-void CatGod::Create(Engine* engine)
+void CatGod::Create()
 {
-	shared_ptr<Branch> root(new Branch(engine));
-	Root = root;
+	spawnX = engine->GetMainWindowSize().x + 128.0f;
 
-	SpawnX = engine->GetMainWindowSize().X + 128.0f;
-
-	Root->AttachScript(GetScript());
+	root = new Branch(engine);
+	root->AttachScript(unique_ptr<CatGod>(this));
 	
-
 }
 
-void CatGod::Spawn(Engine* engine)
-{
-	float gap = engine->GetRandom()->RandomFloat(MinGap, MaxGap);
-
-	CatCouple* catCouple = new CatCouple();
-	catCouple->Create(engine);
-	catCouple->GetRoot()->Position.X = SpawnX;
-
-	CatCouples.push_back(catCouple);
-
-	Root->AttachChild(catCouple->GetRoot());
-}
-
-void CatGod::Update(Engine* engine)
+void CatGod::Update()
 {
 	// Move cats
-	for (int i = 0; i < CatCouples.size(); i++)
+	for (int i = 0; i < catCouples.size(); i++)
 	{
-		shared_ptr<Branch2D> catRoot = CatCouples[i]->GetRoot();
-		catRoot->Position = catRoot->Position + Vector2(-Speed * engine->DeltaTime, 0);
+		Branch2D* catRoot = catCouples[i]->GetRoot();
+		catRoot->position = catRoot->position + Vector2(-speed * engine->deltaTime, 0);
 
-		if (catRoot->Position.X < -100.0f)
+		if (catRoot->position.x < -100.0f)
 		{
-			CatCouples.erase(CatCouples.begin() + i);
+			catCouples.erase(catCouples.begin() + i);
 			catRoot->Destroy();
 			i--;
 		}
 	}
 
-	SpawnRateC += engine->DeltaTime;
-	if (SpawnRateC > SpawnRate)
+	spawnRateC += engine->deltaTime;
+	if (spawnRateC > spawnRate)
 	{
-		Spawn(engine);
-		SpawnRateC = 0.0f;
+		Spawn();
+		spawnRateC = 0.0f;
 	}
+}
+
+void CatGod::Spawn()
+{
+	float gap = engine->GetRandom()->RandomFloat(minGap, maxGap);
+
+	CatCouple* catCouple = new CatCouple(engine);
+	catCouple->Create();
+	catCouple->GetRoot()->position.x = spawnX;
+
+	catCouples.push_back(catCouple);
+
+	root->AttachChild(unique_ptr<Branch>(catCouple->GetRoot()));
 }

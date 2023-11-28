@@ -1,6 +1,6 @@
 #include "PlayerScore.h"
 
-#include "Log.h"
+#include "Squawk/Log.h"
 
 
 using namespace Perch;
@@ -8,23 +8,21 @@ using namespace std;
 using namespace Squawk;
 
 
-void PlayerScore::AddScore()
+void PlayerScore::Create()
 {
-	Score++;
-	Text->SetText(to_string(Score));
-}
-
-void PlayerScore::Create(Engine* engine)
-{
-	shared_ptr<Font> lameFont = Font::Create(engine, "./fonts/LameFont.ttf", 64);
-	if (lameFont == NULL)
+	static shared_ptr<Font> lameFont = Font::Create(engine, "./fonts/LameFont.ttf", 64);
+	if (lameFont == nullptr)
 	{
 		return;
 	}
-	Text = shared_ptr<Text2D>(new Text2D(engine));
-	Text->Position = Vector2(20, 20);
-	Text->SetFont(lameFont);
-	Text->SetText(to_string(Score));
+	text = new Text2D(engine);
+	text->position = Vector2(20, 20);
+	text->SetFont(lameFont);
+	text->SetText(to_string(score));
 }
 
-
+void PlayerScore::AddScore()
+{
+	score++;
+	text->SetText(to_string(score));
+}

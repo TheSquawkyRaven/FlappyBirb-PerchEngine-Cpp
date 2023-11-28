@@ -1,34 +1,33 @@
 #include "Background.h"
 
-#include "Log.h"
+#include "Squawk/Log.h"
 
 
 using namespace Perch;
 using namespace std;
 using namespace Squawk;
 
-void Background::Create(Engine* engine)
+
+void Background::Create()
 {
-	Rect = shared_ptr<Rectangle2D>(new Rectangle2D(engine));
-	Rect->SetRect2(Rect2(0, 0, 1280, 720));
-	Rect->AttachScript(GetScript());
+	rectangle = new Rectangle2D(engine);
+	rectangle->SetRect2(Rect2(0, 0, 1280, 720));
+	rectangle->AttachScript(unique_ptr<Background>(this));
 }
 
-void Background::Update(Engine* engine)
+void Background::Update()
 {
+	time += engine->deltaTime;
 
-	t += engine->DeltaTime;
-
-
-	if (t > 1.0f)
+	if (time > 1.0f)
 	{
-		Color color = Rect->GetColor();
-		color.R = yes ? 255 : 230;
-		color.G = yes ? 230 : 255;
-		color.B = yes ? 230 : 230;
-		yes = !yes;
-		t = 0.0f;
-		Rect->SetColor(color);
+		Color color = rectangle->GetColor();
+		color.r = colorFlip ? 255 : 230;
+		color.g = colorFlip ? 230 : 255;
+		color.b = colorFlip ? 230 : 230;
+		colorFlip = !colorFlip;
+		time = 0.0f;
+		rectangle->SetColor(color);
 	}
 
 }

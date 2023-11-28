@@ -1,7 +1,7 @@
 // This file is to test the game engine
 
 #include "Engine.h"
-#include "Log.h"
+#include "Squawk/Log.h"
 #include "Branch/Branch2D/Sprite2D.h"
 #include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Text2D.h"
@@ -26,48 +26,46 @@ const string WINDOW_NAME = "Flappy Birb";
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
 
-void OnRootCreate(Engine* Engine, Branch* Root);
+void OnRootCreate(Engine* engine, Branch* Root);
 
 int main(int argc, char* args[])
 {
 	shared_ptr<EngineConfig> engineConfig = shared_ptr<EngineConfig>(new EngineConfig());
 
-	engineConfig->WindowName = WINDOW_NAME;
-	engineConfig->WindowSize = Vector2i(SCREEN_WIDTH, SCREEN_HEIGHT);
-	engineConfig->ClearColor = Color::White();
+	engineConfig->windowName = WINDOW_NAME;
+	engineConfig->windowSize = Vector2i(SCREEN_WIDTH, SCREEN_HEIGHT);
+	engineConfig->clearColor = Color::White();
+	engineConfig->showDebug = true;
 
-	Engine* engine = new Engine(engineConfig);
-
+	unique_ptr<Engine> engine(new Engine(engineConfig));
 	engine->SetOnRootCreate(&OnRootCreate);
 	engine->Start();
-
-	delete engine;
 
 	return 0;
 }
 
-void OnRootCreate(Engine* Engine, Branch* Root)
+void OnRootCreate(Engine* engine, Branch* root)
 {
 
-	Background* background = new Background();
-	background->Create(Engine);
+	Background* background = new Background(engine);
+	background->Create();
 
-	Root->AttachChild(background->GetRoot());
+	root->AttachChild(unique_ptr<Branch>(background->GetRoot()));
 
-	CatGod* catGod = new CatGod();
-	catGod->Create(Engine);
+	CatGod* catGod = new CatGod(engine);
+	catGod->Create();
 
-	Root->AttachChild(catGod->GetRoot());
+	root->AttachChild(unique_ptr<Branch>(catGod->GetRoot()));
 
-	Player* player = new Player();
-	player->Create(Engine);
+	Player* player = new Player(engine);
+	player->Create();
 
-	Root->AttachChild(player->GetRoot());
+	root->AttachChild(unique_ptr<Branch>(player->GetRoot()));
 
-	PlayerScore* score = new PlayerScore();
-	score->Create(Engine);
+	PlayerScore* score = new PlayerScore(engine);
+	score->Create();
 
-	Root->AttachChild(score->GetRoot());
+	root->AttachChild(unique_ptr<Branch>(score->GetRoot()));
 
 	player->SetPlayerScore(score);
 

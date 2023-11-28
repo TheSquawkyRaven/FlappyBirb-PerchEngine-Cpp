@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch.h"
 
@@ -16,29 +16,31 @@ class CatGod : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Branch> Root = NULL;
+	Perch::Branch* root = nullptr;
 
 	// Dont' use shared_ptr because a shared pointer is already created with the internal
 	// GetScript() call
-	std::vector<CatCouple*> CatCouples;
+	std::vector<CatCouple*> catCouples;
 
-	float SpawnRateC = 1000.0f;
-	float SpawnX = 0.0f;
+	float spawnRateC = 1000.0f;
+	float spawnX = 0.0f;
 
 public:
 
-	float MinGap = 20.0f;
-	float MaxGap = 200.0f;
-	float Speed = 100.0f;
-	float SpawnRate = 4.0f;
+	float minGap = 20.0f;
+	float maxGap = 200.0f;
+	float speed = 100.0f;
+	float spawnRate = 4.0f;
 
-	inline std::shared_ptr<Perch::Branch> GetRoot() { return Root; }
+public:
 
-	void Create(Perch::Engine* engine);
+	CatGod(Perch::Engine* engine) : Script(engine) {}
+	inline Perch::Branch* GetRoot() { return root; }
+	void Create();
 
-	void Spawn(Perch::Engine* engine);
+	virtual void Update() override;
 
-	virtual void Update(Perch::Engine* engine) override;
+	void Spawn();
 
 
 };

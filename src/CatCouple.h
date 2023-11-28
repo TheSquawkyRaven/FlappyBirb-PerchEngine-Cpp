@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch2D/Branch2D.h"
 
@@ -15,29 +15,25 @@ class CatCouple : public Perch::Script
 
 private:
 
-	std::shared_ptr<Perch::Branch2D> Root = NULL;
+	Perch::Branch2D* root = nullptr;
 
-	// Dont' use shared_ptr because a shared pointer is already created with the internal
-	// GetScript() call
-	Cat* TopCat = NULL;
-	Cat* BottomCat = NULL;
+	Cat* topCat = nullptr;
+	Cat* bottomCat = nullptr;
 
 public:
 
-	float MinOffset = -300.0f;
-	float MaxOffset = 300.0f;
+	float minOffset = -300.0f;
+	float maxOffset = 300.0f;
 
-	float MinGap = 250.0f;
-	float MaxGap = 300.0f;
+	float minGap = 250.0f;
+	float maxGap = 300.0f;
 
-	inline std::shared_ptr<Perch::Branch2D> GetRoot() { return Root; }
+public:
 
-	void Create(Perch::Engine* engine);
 
-	void Spawn(Perch::Engine* engine);
-
-	virtual void Update(Perch::Engine* engine) override;
-
+	CatCouple(Perch::Engine* engine) : Script(engine) {}
+	inline Perch::Branch2D* GetRoot() { return root; }
+	void Create();
 
 };
 

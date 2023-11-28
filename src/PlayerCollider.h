@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Engine.h"
-#include "Script.h"
+#include "Branch/Script.h"
 
 #include "Branch/Branch2D/Collider2D.h"
 
@@ -14,12 +14,17 @@ class PlayerCollider : public Perch::Script
 
 private:
 
-	PlayerScore* Score = NULL;
+	PlayerScore* playerScore = nullptr;
 
 public:
 
-	inline void SetPlayerScore(PlayerScore* playerScore) { Score = playerScore; }
-	virtual void OnCollision2D(Perch::Engine* engine, Perch::Collider2D* collider) override;
+	inline void SetPlayerScore(PlayerScore* playerScore) { this->playerScore = playerScore; }
+
+public:
+
+	PlayerCollider(Perch::Engine* engine) : Script(engine) {}
+
+	virtual void OnCollision2D(Perch::Collider2D* collider) override;
 
 
 };
