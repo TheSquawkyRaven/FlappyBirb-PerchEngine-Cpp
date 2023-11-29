@@ -90,12 +90,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;C:\PATH\SDL2_ttf-2.20.2\include;C:\PATH\SDL2_image-2.6.3\include;C:\PATH\SDL2-2.28.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\PATH\SDL2_ttf-2.20.2\lib\x64;C:\PATH\SDL2_image-2.6.3\lib\x64;C:\PATH\SDL2-2.28.4\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;C:\PATH\SDL2_ttf-2.20.2\include;C:\PATH\SDL2_image-2.6.3\include;C:\PATH\SDL2-2.28.4\include;C:\PATH\SDL2_mixer-2.6.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\PATH\SDL2_ttf-2.20.2\lib\x64;C:\PATH\SDL2_image-2.6.3\lib\x64;C:\PATH\SDL2-2.28.4\lib\x64;C:\PATH\SDL2_mixer-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;C:\PATH\SDL2_ttf-2.20.2\include;C:\PATH\SDL2_image-2.6.3\include;C:\PATH\SDL2-2.28.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\PATH\SDL2_ttf-2.20.2\lib\x64;C:\PATH\SDL2_image-2.6.3\lib\x64;C:\PATH\SDL2-2.28.4\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;C:\PATH\SDL2_ttf-2.20.2\include;C:\PATH\SDL2_image-2.6.3\include;C:\PATH\SDL2-2.28.4\include;C:\PATH\SDL2_mixer-2.6.3\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\PATH\SDL2_ttf-2.20.2\lib\x64;C:\PATH\SDL2_image-2.6.3\lib\x64;C:\PATH\SDL2-2.28.4\lib\x64;C:\PATH\SDL2_mixer-2.6.3\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -136,7 +136,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Perch-Engine-Cpp.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Perch-Engine-Cpp.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Perch-Engine-Cpp.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Perch-Engine-Cpp.lib;SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>C:\Projects\Others\Perch-Engine-Cpp\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>

@@ -6,6 +6,7 @@
 #include "Branch/Branch2D/Rigidbody2D.h"
 #include "Branch/Branch2D/Sprite2D.h"
 #include "Branch/Branch2D/Collider2D.h"
+#include "Branch/Audio.h"
 
 #include "PlayerScore.h"
 #include "PlayerCollider.h"
@@ -20,6 +21,8 @@ private:
 	Perch::Rigidbody2D* rigidbody = nullptr;
 	Perch::Sprite2D* sprite = nullptr;
 	Perch::Collider2D* collider = nullptr;
+	Perch::Audio* jumpAudio = nullptr;
+	Perch::Audio* deathAudio = nullptr;
 
 	PlayerCollider* playerCollider = nullptr;
 	PlayerScore* playerScore = nullptr;
@@ -27,6 +30,7 @@ private:
 private:
 
 	float time = 0;
+	bool isDead = false;
 
 public:
 
@@ -36,6 +40,7 @@ public:
 
 	virtual void Update() override;
 
+	void Die();
 	void SetPlayerScore(PlayerScore* playerScore);
 
 

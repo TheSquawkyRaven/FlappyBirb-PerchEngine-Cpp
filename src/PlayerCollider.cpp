@@ -2,6 +2,8 @@
 
 #include "Squawk/Log.h"
 
+#include "Player.h"
+
 
 using namespace Perch;
 using namespace std;
@@ -10,7 +12,5 @@ using namespace Squawk;
 
 void PlayerCollider::OnCollision2D(Collider2D* collider)
 {
-	Log::Printf("Collided");
-	Log::Printf("playerScore: %d", playerScore->GetScore());
-	engine->Quit();
+	player->Die();
 }

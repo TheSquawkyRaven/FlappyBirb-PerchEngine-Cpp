@@ -5,20 +5,20 @@
 
 #include "Branch/Branch2D/Collider2D.h"
 
-#include "PlayerScore.h"
-
 #include <memory>
+
+class Player;
 
 class PlayerCollider : public Perch::Script
 {
 
 private:
 
-	PlayerScore* playerScore = nullptr;
+	Player* player = nullptr;
 
 public:
 
-	inline void SetPlayerScore(PlayerScore* playerScore) { this->playerScore = playerScore; }
+	inline void SetPlayer(Player* player) { this->player = player; }
 
 public:
 

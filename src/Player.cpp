@@ -30,14 +30,31 @@ void Player::Create()
 	collider->rect = Rect2(-28, -28, 10, 10);
 
 	playerCollider = new PlayerCollider(engine);
+	playerCollider->SetPlayer(this);
 	collider->AttachScript(unique_ptr<PlayerCollider>(playerCollider));
 
 	sprite->AttachChild(unique_ptr<Branch>(collider));
 	rigidbody->AttachChild(unique_ptr<Branch>(sprite));
+
+	shared_ptr<Clip> jumpClip = Clip::Create(engine, "./audio/Jump.wav");
+	jumpAudio = new Audio(engine);
+	jumpAudio->SetClip(jumpClip);
+	rigidbody->AttachChild(unique_ptr<Branch>(jumpAudio));
+
+	shared_ptr<Clip> deathClip = Clip::Create(engine, "./audio/Death.wav");
+	deathAudio = new Audio(engine);
+	deathAudio->SetClip(deathClip);
+	rigidbody->AttachChild(unique_ptr<Branch>(deathAudio));
+
 }
 
 void Player::Update()
 {
+	if (isDead)
+	{
+		return;
+	}
+
 	if (rigidbody->velocity.y > 0.0f)
 	{
 		sprite->SetSpriteIndex(0);
@@ -45,7 +62,8 @@ void Player::Update()
 	if (engine->GetInput()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		sprite->SetSpriteIndex(1);
-		rigidbody->velocity = Vector2(0, -5.0f);
+		rigidbody->velocity = Vector2(0, -7.0f);
+		jumpAudio->Play();
 	}
 
 	time += engine->deltaTime;
@@ -58,13 +76,26 @@ void Player::Update()
 
 	if (rigidbody->position.y < 0.0f || rigidbody->position.y > 720.0f)
 	{
-		engine->Quit();
+		Die();
 	}
 
+}
+
+void Player::Die()
+{
+	if (isDead)
+	{
+		return;
+	}
+
+	deathAudio->Play();
+	engine->timeScale = 0.0f;
+	isDead = true;
+
+	Log::Printf("Final Score: %d", playerScore->GetScore());
 }
 
 void Player::SetPlayerScore(PlayerScore* playerScore)
 {
 	this->playerScore = playerScore;
-	playerCollider->SetPlayerScore(playerScore);
 }
