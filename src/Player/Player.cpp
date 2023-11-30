@@ -2,6 +2,7 @@
 
 #include "Squawk/Log.h"
 
+#include "../Game.h"
 
 using namespace Perch;
 using namespace std;
@@ -66,10 +67,10 @@ void Player::Update()
 		jumpAudio->Play();
 	}
 
-	time += engine->deltaTime;
+	time += engine->GetDeltaTime();
 	if (time > 1.0f)
 	{
-		playerScore->AddScore();
+		game->AddScore();
 		time = 0.0f;
 	}
 
@@ -89,13 +90,6 @@ void Player::Die()
 	}
 
 	deathAudio->Play();
-	engine->timeScale = 0.0f;
+	game->EndGame();
 	isDead = true;
-
-	Log::Printf("Final Score: %d", playerScore->GetScore());
-}
-
-void Player::SetPlayerScore(PlayerScore* playerScore)
-{
-	this->playerScore = playerScore;
 }

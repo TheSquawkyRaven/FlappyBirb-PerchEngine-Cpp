@@ -2,8 +2,6 @@
 
 #include "Squawk/Log.h"
 
-#include "PlayerCollider.h"
-
 
 using namespace Perch;
 using namespace std;

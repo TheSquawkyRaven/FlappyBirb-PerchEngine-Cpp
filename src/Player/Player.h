@@ -8,10 +8,9 @@
 #include "Branch/Branch2D/Collider2D.h"
 #include "Branch/Audio.h"
 
-#include "PlayerScore.h"
 #include "PlayerCollider.h"
 
-#include <memory>
+class Game;
 
 class Player : public Perch::Script
 {
@@ -24,13 +23,17 @@ private:
 	Perch::Audio* jumpAudio = nullptr;
 	Perch::Audio* deathAudio = nullptr;
 
-	PlayerCollider* playerCollider = nullptr;
-	PlayerScore* playerScore = nullptr;
-
 private:
+
+	PlayerCollider* playerCollider = nullptr;
+	Game* game = nullptr;
 
 	float time = 0;
 	bool isDead = false;
+
+public:
+
+	inline void SetGame(Game* game) { this->game = game; }
 
 public:
 
@@ -41,7 +44,6 @@ public:
 	virtual void Update() override;
 
 	void Die();
-	void SetPlayerScore(PlayerScore* playerScore);
 
 
 };

@@ -5,7 +5,6 @@
 
 #include "Branch/Branch2D/Rectangle2D.h"
 
-#include "PlayerScore.h"
 #include "Structs/Color.h"
 
 #include <memory>

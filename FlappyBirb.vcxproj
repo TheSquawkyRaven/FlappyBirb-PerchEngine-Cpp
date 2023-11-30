@@ -20,22 +20,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Background.cpp" />
-    <ClCompile Include="src\Cat.cpp" />
-    <ClCompile Include="src\CatCouple.cpp" />
-    <ClCompile Include="src\CatGod.cpp" />
+    <ClCompile Include="src\Cat\Cat.cpp" />
+    <ClCompile Include="src\Cat\CatCouple.cpp" />
+    <ClCompile Include="src\Cat\CatGod.cpp" />
     <ClCompile Include="src\FlappyBirb.cpp" />
-    <ClCompile Include="src\Player.cpp" />
-    <ClCompile Include="src\PlayerCollider.cpp" />
-    <ClCompile Include="src\PlayerScore.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameManager.cpp" />
+    <ClCompile Include="src\Player\Player.cpp" />
+    <ClCompile Include="src\Player\PlayerCollider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Background.h" />
-    <ClInclude Include="src\Cat.h" />
-    <ClInclude Include="src\CatCouple.h" />
-    <ClInclude Include="src\CatGod.h" />
-    <ClInclude Include="src\Player.h" />
-    <ClInclude Include="src\PlayerCollider.h" />
-    <ClInclude Include="src\PlayerScore.h" />
+    <ClInclude Include="src\Cat\Cat.h" />
+    <ClInclude Include="src\Cat\CatCouple.h" />
+    <ClInclude Include="src\Cat\CatGod.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameManager.h" />
+    <ClInclude Include="src\Player\Player.h" />
+    <ClInclude Include="src\Player\PlayerCollider.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

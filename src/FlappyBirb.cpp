@@ -9,10 +9,7 @@
 #include "Structs/Texture.h"
 #include "Structs/Font.h"
 
-#include "Player.h"
-#include "PlayerScore.h"
-#include "Background.h"
-#include "CatGod.h"
+#include "GameManager.h"
 
 using namespace std;
 using namespace Perch;
@@ -42,27 +39,8 @@ int main(int argc, char* args[])
 
 void OnRootCreate(Engine* engine, Branch* root)
 {
-
-	Background* background = new Background(engine);
-	background->Create();
-
-	root->AttachChild(unique_ptr<Branch>(background->GetRoot()));
-
-	CatGod* catGod = new CatGod(engine);
-	catGod->Create();
-
-	root->AttachChild(unique_ptr<Branch>(catGod->GetRoot()));
-
-	Player* player = new Player(engine);
-	player->Create();
-
-	root->AttachChild(unique_ptr<Branch>(player->GetRoot()));
-
-	PlayerScore* score = new PlayerScore(engine);
-	score->Create();
-
-	root->AttachChild(unique_ptr<Branch>(score->GetRoot()));
-
-	player->SetPlayerScore(score);
+	GameManager* gameManager = new GameManager(engine);
+	gameManager->Create();
+	root->AttachChild(unique_ptr<Branch>(gameManager->GetRoot()));
 
 }

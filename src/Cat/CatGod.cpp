@@ -22,7 +22,7 @@ void CatGod::Update()
 	for (int i = 0; i < catCouples.size(); i++)
 	{
 		Branch2D* catRoot = catCouples[i]->GetRoot();
-		catRoot->position = catRoot->position + Vector2(-speed * engine->deltaTime, 0);
+		catRoot->position = catRoot->position + Vector2(-speed * engine->GetDeltaTime(), 0);
 
 		if (catRoot->position.x < -100.0f)
 		{
@@ -32,7 +32,7 @@ void CatGod::Update()
 		}
 	}
 
-	spawnRateC += engine->deltaTime;
+	spawnRateC += engine->GetDeltaTime();
 	if (spawnRateC > spawnRate)
 	{
 		Spawn();

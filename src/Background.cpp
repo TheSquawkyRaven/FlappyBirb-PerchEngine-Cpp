@@ -17,7 +17,7 @@ void Background::Create()
 
 void Background::Update()
 {
-	time += engine->deltaTime;
+	time += engine->GetDeltaTime();
 
 	if (time > 1.0f)
 	{
