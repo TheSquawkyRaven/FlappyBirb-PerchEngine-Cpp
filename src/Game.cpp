@@ -41,6 +41,7 @@ void Game::Create()
 	scoreText->fontSize = 64;
 	scoreText->position = Vector2(20, 20);
 	scoreText->color = Color::Black();
+	scoreText->SetDrawLayer(10);
 	scoreText->SetFont(lameFont);
 	scoreText->SetText(to_string(score));
 	root->AttachChildu(scoreText);
