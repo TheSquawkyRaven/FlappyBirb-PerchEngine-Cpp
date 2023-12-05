@@ -4,6 +4,7 @@
 #include "Branch/Script.h"
 
 #include "Branch/Branch2D/Rectangle2D.h"
+#include "Branch/Branch2D/ScrollingSprite2D.h"
 
 #include "Structs/Color.h"
 
@@ -14,17 +15,16 @@ class Background : public Perch::Script
 
 private:
 
-	Perch::Rectangle2D* rectangle = nullptr;
-
-public:
-
-	float time = 0;
-	bool colorFlip = false;
+	Perch::Branch2D* root = nullptr;
+	Perch::ScrollingSprite2D* skySprite = nullptr;
+	Perch::ScrollingSprite2D* hillsSprite = nullptr;
+	Perch::ScrollingSprite2D* cityscapeBackSprite = nullptr;
+	Perch::ScrollingSprite2D* cityscapeSprite = nullptr;
 
 public:
 
 	Background(Perch::Engine* engine) : Script(engine) {}
-	inline Perch::Rectangle2D* GetRoot() { return rectangle; }
+	inline Perch::Branch2D* GetRoot() { return root; }
 	void Create();
 
 	virtual void Update() override;

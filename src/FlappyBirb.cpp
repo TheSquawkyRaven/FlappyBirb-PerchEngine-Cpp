@@ -28,7 +28,7 @@ int main(int argc, char* args[])
 	engineConfig->windowName = WINDOW_NAME;
 	engineConfig->windowSize = Vector2i(SCREEN_WIDTH, SCREEN_HEIGHT);
 	engineConfig->clearColor = Color::White();
-	engineConfig->showDebug = true;
+	engineConfig->showDebug = false;
 
 	unique_ptr<Engine> engine(new Engine(engineConfig));
 	engine->SetOnRootCreate(&OnRootCreate);

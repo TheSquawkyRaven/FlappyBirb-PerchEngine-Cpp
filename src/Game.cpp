@@ -74,9 +74,9 @@ void Game::StartGame()
 	engine->timeScale = 1.0f;
 	overlay->SetActive(false);
 
-	/*Background* background = new Background(engine);
+	Background* background = new Background(engine);
 	background->Create();
-	root->AttachChildu(background->GetRoot());*/
+	root->AttachChildu(background->GetRoot());
 
 	CatGod* catGod = new CatGod(engine);
 	catGod->Create();
