@@ -10,7 +10,15 @@ using namespace std;
 using namespace Squawk;
 
 
-void PlayerCollider::OnCollision2D(Collider2D* collider)
+void PlayerCollider::OnCollision2D(Collider2D* collider, CollisionState collisionState)
 {
-	player->Die();
+	if (collisionState == CollisionState::Enter)
+	{
+		if (collider->GetName() == "Point")
+		{
+			player->AddScore();
+			return;
+		}
+		player->Die();
+	}
 }

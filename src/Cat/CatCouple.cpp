@@ -27,6 +27,11 @@ void CatCouple::Create()
 	bottomCat->SetIsTop(false);
 	bottomCat->GetRoot()->position.y += offset / 2 + gap / 2;
 
-	root->AttachChild(unique_ptr<Branch>(topCat->GetRoot()));
-	root->AttachChild(unique_ptr<Branch>(bottomCat->GetRoot()));
+	pointDetector = new Collider2D(engine);
+	pointDetector->rect = Rect2(2, -(-offset / 2 + gap / 2), 4, gap);
+	pointDetector->SetName("Point");
+	root->AttachChildu(pointDetector);
+
+	root->AttachChildu(topCat->GetRoot());
+	root->AttachChildu(bottomCat->GetRoot());
 }

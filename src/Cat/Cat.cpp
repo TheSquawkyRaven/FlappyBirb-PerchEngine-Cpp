@@ -30,11 +30,11 @@ void Cat::SetIsTop(bool isTop)
 	if (isTop)
 	{
 		sprite->angle = 180.0f;
-		collider->rect = Rect2(-96 / 2, -384 + 64, 16, 48);
+		collider->rect = Rect2(-8, -68, 16, 64);
 	}
 	else
 	{
 		sprite->angle = 0.0f;
-		collider->rect = Rect2(-96 / 2, 32, 16, 48);
+		collider->rect = Rect2(-8, 4, 16, 64);
 	}
 }

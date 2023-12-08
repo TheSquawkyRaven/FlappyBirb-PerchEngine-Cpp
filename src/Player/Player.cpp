@@ -28,24 +28,30 @@ void Player::Create()
 	rigidbody->position = playerStartPosition;
 
 	collider = new Collider2D(engine);
-	collider->rect = Rect2(-28, -28, 10, 10);
+	collider->rect = Rect2(-5, -5, 10, 10);
 
 	playerCollider = new PlayerCollider(engine);
 	playerCollider->SetPlayer(this);
-	collider->AttachScript(unique_ptr<PlayerCollider>(playerCollider));
+	collider->AttachScriptu(playerCollider);
 
-	sprite->AttachChild(unique_ptr<Branch>(collider));
-	rigidbody->AttachChild(unique_ptr<Branch>(sprite));
+	sprite->AttachChildu(collider);
+	rigidbody->AttachChildu(sprite);
 
 	shared_ptr<Clip> jumpClip = Clip::Create(engine, "./audio/Jump.wav");
 	jumpAudio = new Audio(engine);
 	jumpAudio->SetClip(jumpClip);
-	rigidbody->AttachChild(unique_ptr<Branch>(jumpAudio));
+	rigidbody->AttachChildu(jumpAudio);
 
 	shared_ptr<Clip> deathClip = Clip::Create(engine, "./audio/Death.wav");
 	deathAudio = new Audio(engine);
 	deathAudio->SetClip(deathClip);
-	rigidbody->AttachChild(unique_ptr<Branch>(deathAudio));
+	rigidbody->AttachChildu(deathAudio);
+
+	shared_ptr<Clip> scoreClip = Clip::Create(engine, "./audio/Score.wav");
+	scoreAudio = new Audio(engine);
+	scoreAudio->SetClip(scoreClip);
+	rigidbody->AttachChildu(scoreAudio);
+
 
 }
 
@@ -63,15 +69,8 @@ void Player::Update()
 	if (engine->GetInput()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		sprite->SetSpriteIndex(1);
-		rigidbody->velocity = Vector2(0, -7.0f);
+		rigidbody->velocity = Vector2(0, -5.0f);
 		jumpAudio->Play();
-	}
-
-	time += engine->GetDeltaTime();
-	if (time > 1.0f)
-	{
-		game->AddScore();
-		time = 0.0f;
 	}
 
 
@@ -80,6 +79,12 @@ void Player::Update()
 		Die();
 	}
 
+}
+
+void Player::AddScore()
+{
+	scoreAudio->Play();
+	game->AddScore();
 }
 
 void Player::Die()

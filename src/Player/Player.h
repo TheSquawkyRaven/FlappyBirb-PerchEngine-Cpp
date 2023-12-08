@@ -22,13 +22,13 @@ private:
 	Perch::Collider2D* collider = nullptr;
 	Perch::Audio* jumpAudio = nullptr;
 	Perch::Audio* deathAudio = nullptr;
+	Perch::Audio* scoreAudio = nullptr;
 
 private:
 
 	PlayerCollider* playerCollider = nullptr;
 	Game* game = nullptr;
 
-	float time = 0;
 	bool isDead = false;
 
 public:
@@ -43,6 +43,7 @@ public:
 
 	virtual void Update() override;
 
+	void AddScore();
 	void Die();
 
 

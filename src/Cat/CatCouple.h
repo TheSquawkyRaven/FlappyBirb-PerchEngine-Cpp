@@ -16,6 +16,7 @@ class CatCouple : public Perch::Script
 private:
 
 	Perch::Branch2D* root = nullptr;
+	Perch::Collider2D* pointDetector = nullptr;
 
 	Cat* topCat = nullptr;
 	Cat* bottomCat = nullptr;

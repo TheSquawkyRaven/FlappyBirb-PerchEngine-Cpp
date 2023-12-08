@@ -24,7 +24,7 @@ public:
 
 	PlayerCollider(Perch::Engine* engine) : Script(engine) {}
 
-	virtual void OnCollision2D(Perch::Collider2D* collider) override;
+	virtual void OnCollision2D(Perch::Collider2D* collider, Perch::CollisionState collisionState) override;
 
 
 };
