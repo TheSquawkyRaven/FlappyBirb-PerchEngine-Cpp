@@ -13,6 +13,10 @@ void GameManager::Create()
 {
 	root = new Branch(engine);
 	root->AttachScriptu(this);
+
+	hud = new HUD(engine);
+	hud->Create();
+	root->AttachChildu(hud->GetRoot());
 }
 
 void GameManager::Update()

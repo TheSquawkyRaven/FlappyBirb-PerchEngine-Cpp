@@ -6,6 +6,7 @@
 #include "Structs/Color.h"
 
 #include "Branch/Branch2D/Rectangle2D.h"
+#include "HUD.h"
 
 class Game;
 
@@ -27,6 +28,7 @@ private:
 private:
 
 	GameState gameState = GameState::MainMenu;
+	HUD* hud = nullptr;
 	Game* currentGame = nullptr;
 
 public:
