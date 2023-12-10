@@ -96,5 +96,5 @@ void Game::EndGame()
 	Log::Printf("\n-----\nGame Ended\n-----\n Score: %d\n-----", score);
 
 	// TODO pop in score board, then only end game
-	gameManager->EndGame(score);
+	//gameManager->EndGame(score);
 }

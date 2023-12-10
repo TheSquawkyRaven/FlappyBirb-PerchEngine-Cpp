@@ -12,7 +12,7 @@ using namespace Squawk;
 void Player::Create()
 {
 	rigidbody = new Rigidbody2D(engine);
-	rigidbody->gravity = 15.0f;
+	rigidbody->gravity = 980.f;
 	rigidbody->AttachScript(unique_ptr<Player>(this));
 
 	shared_ptr<Texture> birbTexture = Texture::Create(engine, "./images/birb-Sheet.png");
@@ -69,10 +69,9 @@ void Player::Update()
 	if (engine->GetInput()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		sprite->SetSpriteIndex(1);
-		rigidbody->velocity = Vector2(0, -5.0f);
+		rigidbody->velocity = Vector2(0, -500.0f);
 		jumpAudio->Play();
 	}
-
 
 	if (rigidbody->position.y < 0.0f || rigidbody->position.y > 720.0f)
 	{

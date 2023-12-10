@@ -26,6 +26,7 @@
     <ClCompile Include="src\FlappyBirb.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
+    <ClCompile Include="src\HUD.cpp" />
     <ClCompile Include="src\Player\Player.cpp" />
     <ClCompile Include="src\Player\PlayerCollider.cpp" />
   </ItemGroup>
@@ -36,6 +37,7 @@
     <ClInclude Include="src\Cat\CatGod.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameManager.h" />
+    <ClInclude Include="src\HUD.h" />
     <ClInclude Include="src\Player\Player.h" />
     <ClInclude Include="src\Player\PlayerCollider.h" />
   </ItemGroup>
