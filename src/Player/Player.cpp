@@ -65,15 +65,21 @@ void Player::Update()
 	if (rigidbody->velocity.y > 0.0f)
 	{
 		sprite->SetSpriteIndex(0);
+		sprite->angle += 200.f * engine->GetDeltaTime();
+	}
+	else
+	{
+		sprite->angle -= 100.f * engine->GetDeltaTime();
 	}
 	if (engine->GetInput()->GetKeyDown(SDL_SCANCODE_SPACE))
 	{
 		sprite->SetSpriteIndex(1);
-		rigidbody->velocity = Vector2(0, -500.0f);
+		rigidbody->velocity = Vector2(0, -600.0f);
 		jumpAudio->Play();
+		sprite->angle = -10.f;
 	}
 
-	if (rigidbody->position.y < 0.0f || rigidbody->position.y > 720.0f)
+	if (rigidbody->position.y < 0.0f || rigidbody->position.y > engine->GetMainWindowSize().y)
 	{
 		Die();
 	}

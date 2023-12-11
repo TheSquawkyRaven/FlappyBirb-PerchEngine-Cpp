@@ -87,7 +87,7 @@ void HUD::Create()
 	gainedScoreText->fontSize = 32;
 	gainedScoreText->color = Color::Lime();
 	gainedScoreText->SetFont(lameFont);
-	gainedScoreText->SetText("Score:");
+	gainedScoreText->SetText("Score: ");
 	scoreboard->AttachChildu(gainedScoreText);
 
 	highScoreText = new Text2D(engine);
@@ -96,7 +96,7 @@ void HUD::Create()
 	highScoreText->fontSize = 24;
 	highScoreText->color = Color::White();
 	highScoreText->SetFont(lameFont);
-	highScoreText->SetText("High Score:");
+	highScoreText->SetText("High Score: TODO");
 	scoreboard->AttachChildu(highScoreText);
 
 	restartButton->SetOnClick([this]() { this->RestartGame(); });
@@ -129,5 +129,5 @@ void HUD::GameEnded(int score)
 {
 	menuHUD->SetActive(true);
 	scoreboard->SetActive(true);
-	gainedScoreText->SetText("Score:" + to_string(score));
+	gainedScoreText->SetText("Score: " + to_string(score));
 }
