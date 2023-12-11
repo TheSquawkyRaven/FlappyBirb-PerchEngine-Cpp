@@ -5,21 +5,23 @@
 
 #include "Structs/Color.h"
 
-#include "Branch/BranchUI/ButtonUI.h"
+#include "Branch/Branch2D/Button2D.h"
 
 class HUD : public Perch::Script
 {
 
 private:
 
-	Perch::BranchUI* root = nullptr;
+	Perch::Branch2D* root = nullptr;
+	Perch::Button2D* button = nullptr;
+	Perch::Sprite2D* buttonSprite = nullptr;
 
 private:
 
 public:
 
 	HUD(Perch::Engine* engine) : Script(engine) {}
-	inline Perch::BranchUI* GetRoot() { return root; }
+	inline Perch::Branch2D* GetRoot() { return root; }
 	void Create();
 
 };
