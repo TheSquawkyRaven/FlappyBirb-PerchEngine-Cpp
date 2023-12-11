@@ -15,13 +15,19 @@ void GameManager::Create()
 	root->AttachScriptu(this);
 
 	hud = new HUD(engine);
+	hud->SetGameManager(this);
 	hud->Create();
 	root->AttachChildu(hud->GetRoot());
+
+	currentGame = new Game(engine);
+	currentGame->SetGameManager(this);
+	currentGame->Create();
+	root->AttachChildu(currentGame->GetRoot());
 }
 
 void GameManager::Update()
 {
-	if (gameState != MainMenu)
+	if (gameState != GameState::Starting)
 	{
 		return;
 	}
@@ -34,18 +40,22 @@ void GameManager::Update()
 
 void GameManager::StartGame()
 {
-	gameState = GameState::InGame;
-
-	currentGame = new Game(engine);
-	currentGame->SetGameManager(this);
-	currentGame->Create();
-	root->AttachChildu(currentGame->GetRoot());
+	gameState = GameState::Game;
+	currentGame->StartGame();
+	hud->GameStarted();
 }
 
 void GameManager::EndGame(int score)
 {
-	gameState = GameState::MainMenu;
+	gameState = GameState::GameOver;
+	hud->GameEnded(score);
 
-	currentGame->GetRoot()->Destroy();
-	currentGame = nullptr;
+	//currentGame->GetRoot()->Destroy();
+	//currentGame = nullptr;
+}
+
+void GameManager::RestartGame()
+{
+	gameState = GameState::Starting;
+	currentGame->ResetGame();
 }

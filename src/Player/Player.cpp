@@ -23,8 +23,8 @@ void Player::Create()
 	sprite->positionPivot = Vector2(0.5f, 0.5f);
 
 	Vector2 playerStartPosition = engine->GetMainWindowSize();
-	playerStartPosition.x /= 3;
-	playerStartPosition.y /= 2;
+	playerStartPosition.x /= 3.5;
+	playerStartPosition.y /= 3.5f;
 	rigidbody->position = playerStartPosition;
 
 	collider = new Collider2D(engine);

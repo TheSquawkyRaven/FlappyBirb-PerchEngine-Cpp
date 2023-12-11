@@ -34,12 +34,20 @@ void Background::Create()
 	cityscapeBackSprite->SetTexture(cityscapeBack);
 	cityscapeBackSprite->scale = scale;
 
+	shared_ptr<Texture> sun = Texture::Create(engine, "./images/sun.png");
+	sunSprite = new Sprite2D(engine);
+	sunSprite->SetTexture(sun);
+	sunSprite->scale = scale;
+	sunSprite->position = Vector2(1075, -175);
+
 	root->AttachScriptu(this);
 
 	root->AttachChildu(skySprite);
 	root->AttachChildu(hillsSprite);
 	root->AttachChildu(cityscapeBackSprite);
 	root->AttachChildu(cityscapeSprite);
+
+	root->AttachChildu(sunSprite);
 	
 }
 

@@ -9,21 +9,24 @@
 #include "Branch/Branch2D/Rectangle2D.h"
 #include "Branch/Branch2D/Text2D.h"
 
+#include "Player/Player.h"
+#include "Background.h"
+#include "Cat/CatGod.h"
+
 class Game : public Perch::Script
 {
 
 private:
 
 	Perch::Branch* root = nullptr;
-	Perch::Rectangle2D* overlay = nullptr;
-	Perch::Text2D* overlayText = nullptr;
 
-	Perch::Text2D* scoreText = nullptr;
+	Background* background = nullptr;
+	CatGod* catGod = nullptr;
+	Player* player = nullptr;
 
 private:
 
 	GameManager* gameManager = nullptr;
-	bool waitForInput = true;
 
 	int score = 0;
 
@@ -38,10 +41,11 @@ public:
 	inline Perch::Branch* GetRoot() { return root; }
 	void Create();
 
-	virtual void Update() override;
-
 	void AddScore();
 
+	void CreateProps();
+
+	void ResetGame();
 	void StartGame();
 	void EndGame();
 

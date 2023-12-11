@@ -21,6 +21,8 @@ private:
 	Perch::ScrollingSprite2D* cityscapeBackSprite = nullptr;
 	Perch::ScrollingSprite2D* cityscapeSprite = nullptr;
 
+	Perch::Sprite2D* sunSprite = nullptr;
+
 public:
 
 	Background(Perch::Engine* engine) : Script(engine) {}

@@ -14,10 +14,10 @@ class GameManager : public Perch::Script
 {
 
 public:
-	enum GameState
+	enum class GameState
 	{
-		MainMenu,
-		InGame,
+		Starting,
+		Game,
 		GameOver,
 	};
 
@@ -27,9 +27,12 @@ private:
 
 private:
 
-	GameState gameState = GameState::MainMenu;
-	HUD* hud = nullptr;
+	GameState gameState = GameState::Starting;
 	Game* currentGame = nullptr;
+
+public:
+
+	HUD* hud = nullptr;
 
 public:
 
@@ -41,6 +44,7 @@ public:
 
 	void StartGame();
 	void EndGame(int score);
+	void RestartGame();
 
 };
 
