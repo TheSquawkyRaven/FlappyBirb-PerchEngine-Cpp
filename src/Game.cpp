@@ -53,6 +53,7 @@ void Game::ResetGame()
 	CreateProps();
 	score = 0;
 	engine->timeScale = 0.0f;
+	gameManager->hud->UpdateScore(0);
 }
 
 void Game::StartGame()

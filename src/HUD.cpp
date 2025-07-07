@@ -107,6 +107,11 @@ void HUD::Create()
 
 void HUD::UpdateScore(int score)
 {
+	if (score == 0)
+	{
+		scoreText->SetText("");
+		return;
+	}
 	scoreText->SetText(to_string(score));
 }
 
