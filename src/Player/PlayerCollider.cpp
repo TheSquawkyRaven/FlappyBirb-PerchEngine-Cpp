@@ -16,7 +16,13 @@ void PlayerCollider::OnCollision2D(Collider2D* collider, CollisionState collisio
 	{
 		if (collider->GetName() == "Point")
 		{
-			player->AddScore();
+			player->AddScore(10);
+			return;
+		}
+		if (collider->GetName() == "Bread")
+		{
+			collider->GetParent()->Destroy();
+			player->AddScore(5);
 			return;
 		}
 		player->Die();

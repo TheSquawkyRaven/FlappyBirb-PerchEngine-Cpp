@@ -86,10 +86,10 @@ void Player::Update()
 
 }
 
-void Player::AddScore()
+void Player::AddScore(int score)
 {
 	scoreAudio->Play();
-	game->AddScore();
+	game->AddScore(score);
 }
 
 void Player::Die()

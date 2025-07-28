@@ -19,9 +19,9 @@ void Game::Create()
 	ResetGame();
 }
 
-void Game::AddScore()
+void Game::AddScore(int score_)
 {
-	score++;
+	score += score_;
 	gameManager->hud->UpdateScore(score);
 }
 
@@ -31,6 +31,7 @@ void Game::CreateProps()
 	{
 		background->GetRoot()->Destroy();
 		catGod->GetRoot()->Destroy();
+		breadGod->GetRoot()->Destroy();
 		player->GetRoot()->Destroy();
 	}
 
@@ -41,6 +42,10 @@ void Game::CreateProps()
 	catGod = new CatGod(engine);
 	catGod->Create();
 	root->AttachChildu(catGod->GetRoot());
+
+	breadGod = new BreadGod(engine);
+	breadGod->Create(catGod);
+	root->AttachChildu(breadGod->GetRoot());
 
 	player = new Player(engine);
 	player->SetGame(this);

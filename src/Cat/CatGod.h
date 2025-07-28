@@ -26,6 +26,8 @@ private:
 
 public:
 
+	std::function<void(CatCouple* catCouple)> catCoupleCreated = nullptr;
+
 	float speed = 100.0f;
 	float spawnXGap = 250.0f;
 
@@ -34,6 +36,8 @@ public:
 	CatGod(Perch::Engine* engine) : Script(engine) {}
 	inline Perch::Branch* GetRoot() { return root; }
 	void Create();
+
+	void inline SetCatCoupleCreated(std::function<void(CatCouple* catCouple)> onCatCoupleCreated) { catCoupleCreated = onCatCoupleCreated; }
 
 	virtual void Update() override;
 

@@ -12,6 +12,7 @@
 #include "Player/Player.h"
 #include "Background.h"
 #include "Cat/CatGod.h"
+#include "Bread/BreadGod.h"
 
 class Game : public Perch::Script
 {
@@ -22,6 +23,7 @@ private:
 
 	Background* background = nullptr;
 	CatGod* catGod = nullptr;
+	BreadGod* breadGod = nullptr;
 	Player* player = nullptr;
 
 private:
@@ -41,7 +43,7 @@ public:
 	inline Perch::Branch* GetRoot() { return root; }
 	void Create();
 
-	void AddScore();
+	void AddScore(int score);
 
 	void CreateProps();
 

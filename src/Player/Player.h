@@ -43,7 +43,7 @@ public:
 
 	virtual void Update() override;
 
-	void AddScore();
+	void AddScore(int score);
 	void Die();
 
 

@@ -59,4 +59,6 @@ void CatGod::Spawn()
 	catCouples.push_back(catCouple);
 
 	root->AttachChild(unique_ptr<Branch>(catCouple->GetRoot()));
+
+	catCoupleCreated(catCouple);
 }
