@@ -22,15 +22,12 @@ private:
 	// GetScript() call
 	std::vector<CatCouple*> catCouples;
 
-	float spawnRateC = 1000.0f;
 	float spawnX = 0.0f;
 
 public:
 
-	float minGap = 20.0f;
-	float maxGap = 200.0f;
 	float speed = 100.0f;
-	float spawnRate = 4.0f;
+	float spawnXGap = 250.0f;
 
 public:
 
