@@ -20,6 +20,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Background.cpp" />
+    <ClCompile Include="src\Bread\Bread.cpp" />
+    <ClCompile Include="src\Bread\BreadGod.cpp" />
     <ClCompile Include="src\Cat\Cat.cpp" />
     <ClCompile Include="src\Cat\CatCouple.cpp" />
     <ClCompile Include="src\Cat\CatGod.cpp" />
@@ -32,6 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Background.h" />
+    <ClInclude Include="src\Bread\Bread.h" />
+    <ClInclude Include="src\Bread\BreadGod.h" />
     <ClInclude Include="src\Cat\Cat.h" />
     <ClInclude Include="src\Cat\CatCouple.h" />
     <ClInclude Include="src\Cat\CatGod.h" />

@@ -22,21 +22,22 @@ private:
 	// GetScript() call
 	std::vector<CatCouple*> catCouples;
 
-	float spawnRateC = 1000.0f;
 	float spawnX = 0.0f;
 
 public:
 
-	float minGap = 20.0f;
-	float maxGap = 200.0f;
+	std::function<void(CatCouple* catCouple)> catCoupleCreated = nullptr;
+
 	float speed = 100.0f;
-	float spawnRate = 4.0f;
+	float spawnXGap = 250.0f;
 
 public:
 
 	CatGod(Perch::Engine* engine) : Script(engine) {}
 	inline Perch::Branch* GetRoot() { return root; }
 	void Create();
+
+	void inline SetCatCoupleCreated(std::function<void(CatCouple* catCouple)> onCatCoupleCreated) { catCoupleCreated = onCatCoupleCreated; }
 
 	virtual void Update() override;
 

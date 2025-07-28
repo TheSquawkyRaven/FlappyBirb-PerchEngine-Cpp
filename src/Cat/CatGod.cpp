@@ -26,24 +26,32 @@ void CatGod::Update()
 
 		if (catRoot->position.x < -100.0f)
 		{
+			// Queue for catCouples would definitely be better
 			catCouples.erase(catCouples.begin() + i);
 			catRoot->Destroy();
 			i--;
 		}
 	}
 
-	spawnRateC += engine->GetDeltaTime();
-	if (spawnRateC > spawnRate)
+	if (!catCouples.empty())
+	{
+		float lastPosition = catCouples.back()->GetRoot()->position.x;
+		float limit = engine->GetMainWindowSize().x;
+		float xGap = limit - lastPosition;
+		if (xGap > spawnXGap)
+		{
+			Spawn();
+		}
+
+	}
+	else
 	{
 		Spawn();
-		spawnRateC = 0.0f;
 	}
 }
 
 void CatGod::Spawn()
 {
-	float gap = engine->GetRandom()->RandomFloat(minGap, maxGap);
-
 	CatCouple* catCouple = new CatCouple(engine);
 	catCouple->Create();
 	catCouple->GetRoot()->position.x = spawnX;
@@ -51,4 +59,6 @@ void CatGod::Spawn()
 	catCouples.push_back(catCouple);
 
 	root->AttachChild(unique_ptr<Branch>(catCouple->GetRoot()));
+
+	catCoupleCreated(catCouple);
 }

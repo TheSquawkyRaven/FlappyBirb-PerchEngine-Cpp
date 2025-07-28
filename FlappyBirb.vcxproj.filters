@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Player">
       <UniqueIdentifier>{00367eb8-6bd1-4d46-a2f2-91d203a8810e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Bread">
+      <UniqueIdentifier>{99b37557-3ae1-4a76-927e-832c76f19895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Bread">
+      <UniqueIdentifier>{91024406-d6e6-498e-8715-960f154f08a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FlappyBirb.cpp">
@@ -57,6 +63,12 @@
     <ClCompile Include="src\HUD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Bread\BreadGod.cpp">
+      <Filter>Source Files\Bread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bread\Bread.cpp">
+      <Filter>Source Files\Bread</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Background.h">
@@ -85,6 +97,12 @@
     </ClInclude>
     <ClInclude Include="src\HUD.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bread\BreadGod.h">
+      <Filter>Header Files\Bread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bread\Bread.h">
+      <Filter>Header Files\Bread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
